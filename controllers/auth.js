@@ -1,6 +1,6 @@
 const { StatusCodes } = require("http-status-codes")
 const User = require("../models/User")
-
+const {BadReqestError,UnauthenticatedError} = require('../errors')
 const register = async (req,res) =>{
     const user = await User.create({...req.body})
     const token = user.createJWT()
@@ -10,18 +10,18 @@ const register = async (req,res) =>{
 const login = async (req,res) =>{
     const {email,password} = req.body
     if(!email || !password){
-        res.status(StatusCodes.BAD_REQUEST).json('please provide email and password')
+        throw new BadReqestError('please provide email and password')
     }
     const user  = await User.findOne({email})
 
     if(!user){
-        res.status(StatusCodes.UNAUTHORIZED).json('wrong credentials')
+        throw new UnauthenticatedError('wrong credentials')
     }
 
     const isPasswordCorrect = await user.comparePassword(password)
 
     if(!isPasswordCorrect){
-        res.status(StatusCodes.UNAUTHORIZED).json('wrong credentials')
+        throw new UnauthenticatedError('wrong credentials')
     }
     const token = user.createJWT()
 
