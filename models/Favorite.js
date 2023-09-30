@@ -24,6 +24,11 @@ const FavoriteSchema = mongoose.Schema({
         type:String,
         maxlength:50,
     },
+    createdBy:{
+        type:mongoose.Types.ObjectId,
+        ref:'User',
+        required:[true,'please provide a user']
+    }
 },{timestamps:true})
 
 module.exports = mongoose.model('Favorite',FavoriteSchema)
