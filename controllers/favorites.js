@@ -22,7 +22,7 @@ const addFavorite = async (req,res) =>{
     req.body.createdBy = req.user.userId
     const favorite = await Favorite.create(req.body)
     
-    req.status(StatusCodes.CREATED).json(favorite)
+    res.status(StatusCodes.CREATED).json(favorite)
 }
 
 const deleteFavorite = async (req,res) =>{
