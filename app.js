@@ -4,13 +4,14 @@ require('express-async-errors');
 const  express = require('express')
 const connectDB = require('./database/connect')
 const app = express()
+const cors = require('cors')
 const authRouter = require('./routes/auth')
 const favoritesRouter = require('./routes/favorites')
 const errorHandlerMiddleware = require('./middleware/error-handler');
 const notFoundMiddleware = require('./middleware/not-found');
 const authenticationMiddleware = require('./middleware/authentication')
 app.use(express.json());
-
+app.use(cors())
 
 //routes
 app.use('/api/v1/auth',authRouter)
