@@ -1,21 +1,24 @@
 const mongoose = require('mongoose')
 
 const FavoriteSchema = mongoose.Schema({
+    id:{
+       type:Number,
+       required:[true,'please provide an id'],
+    },  
     title:{
         type:String,
         required:[true,'please provide a title'],
         minlength:2
     },
-    releaseDate:{
+    poster_path:{
+        type:String,
+        required:[true,'please provide a poster path']
+    },
+    release_date:{
         type:String,
         required:[true,'please provide a release date'],
     },
-    Genre:{
-        type:String,
-        required:[true,'please provide a genre'],
-        maxlength:50,
-    },
-    rating:{
+    vote_average:{
         type:Number,
         min:[0,'rating must be between 0 and 10'],
         max:[10,'rating must be between 0 and 10']

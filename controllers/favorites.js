@@ -11,7 +11,7 @@ const getAllFavorites = async (req,res) =>{
 
 const getFavorite = async (req,res) =>{
     const {user:{userId},params:{id}} = req
-    const favorite = await Favorite.findOne({_id:id,createdBy:userId})
+    const favorite = await Favorite.findOne({id:id,createdBy:userId})
     if(!favorite){
         throw new NotFoundError(`no favorite with id ${id}`)
     }
@@ -27,7 +27,7 @@ const addFavorite = async (req,res) =>{
 
 const deleteFavorite = async (req,res) =>{
     const {user:{userId},params:{id}} = req
-    const favorite = await Favorite.findOneAndDelete({createdBy:userId,_id:id})
+    const favorite = await Favorite.findOneAndDelete({createdBy:userId,id:id})
 
     if(!favorite){
         throw new NotFoundError(`no favorite with id ${id}`)

@@ -11,8 +11,10 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
 const notFoundMiddleware = require('./middleware/not-found');
 const authenticationMiddleware = require('./middleware/authentication')
 app.use(express.json());
-app.use(cors())
-
+app.use(cors({
+    origin: 'http://localhost:5173',
+    // Other CORS options if needed
+  }));
 //routes
 app.use('/api/v1/auth',authRouter)
 app.use('/api/v1/favorites',authenticationMiddleware,favoritesRouter)
