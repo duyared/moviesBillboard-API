@@ -31,6 +31,11 @@ const FavoriteSchema = mongoose.Schema({
         type:mongoose.Types.ObjectId,
         ref:'User',
         required:[true,'please provide a user']
+    },
+    type:{
+        type:String,
+        enum:['tv','movie'],
+        required:[true,'please provide a type']
     }
 },{timestamps:true})
 
