@@ -12,7 +12,7 @@ const notFoundMiddleware = require('./middleware/not-found');
 const authenticationMiddleware = require('./middleware/authentication')
 app.use(express.json());
 app.use(cors({
-    origin: 'https://watchthisone.netlify.app',
+    origin: ['https://watchthisone.netlify.app','http://localhost:5173']
     // Other CORS options if needed
   }));
 //routes
